@@ -1,0 +1,8 @@
+openapi: 3.0.3
+info: {title: Arbis Messaging API, version: 0.1.0}
+paths:
+  /api/state: {get: {summary: Demo account state, responses: {'200': {description: OK}}}}
+  /api/link/challenge: {post: {summary: Create phone-link challenge, responses: {'200': {description: OK}}}}
+  /api/messages: {post: {summary: Send a browser/demo message, responses: {'200': {description: OK}}}}
+  /api/proposals/{id}/confirm: {post: {summary: Confirm a browser-authenticated proposal, responses: {'200': {description: OK}}}}
+  /webhooks/v1/{provider}: {post: {summary: Verify and ingest provider webhook, parameters: [{name: provider, in: path, required: true, schema: {type: string}}], responses: {'202': {description: Accepted}}}}

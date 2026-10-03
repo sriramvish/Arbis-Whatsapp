@@ -1,0 +1,3 @@
+import test from 'node:test'; import assert from 'node:assert/strict'; import { Store } from '../src/store.mjs';
+test('linking is single use and proposal is browser-confirmable',()=>{const s=new Store();const c=s.createChallenge('+15555550100');const b=s.consumeChallenge(c.token,c.phone);assert.equal(b.status,'active');assert.throws(()=>s.consumeChallenge(c.token,c.phone));const p=s.proposal('Change greeting');assert.equal(s.confirm(p.id,p.digest).status,'confirmed')});
+test('high impact proposals cannot be confirmed through channel contract',()=>{const s=new Store();const p=s.proposal('Delete account','high');assert.throws(()=>s.confirm(p.id,p.digest),/high-impact/)})

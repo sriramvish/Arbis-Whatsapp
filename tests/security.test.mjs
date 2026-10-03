@@ -1,0 +1,3 @@
+import test from 'node:test'; import assert from 'node:assert/strict'; import crypto from 'node:crypto'; import { signState, verifyState, verifyWebhook } from '../src/security.mjs';
+test('signed state expires and verifies',()=>{const s=signState({sub:'demo',exp:Date.now()+1000},'x');assert.equal(verifyState(s,'x').sub,'demo');assert.throws(()=>verifyState(s,'wrong'))});
+test('webhook signature covers timestamp and raw bytes',()=>{const raw='{"Body":"hi"}', ts=Math.floor(Date.now()/1000), sig=crypto.createHmac('sha256','x').update(`${ts}.${raw}`).digest('hex');assert.equal(typeof verifyWebhook(raw,`v1=${ts}:${sig}`,'x'),'string');assert.throws(()=>verifyWebhook(raw+'x',`v1=${ts}:${sig}`,'x'))});

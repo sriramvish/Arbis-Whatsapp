@@ -1,0 +1,13 @@
+{
+  "name": "arbis-messaging-agent-prototype",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "dev": "node src/server.mjs",
+    "start": "NODE_ENV=production node src/server.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "node --check src/server.mjs && node --check src/security.mjs && node --check src/store.mjs"
+  }
+}
