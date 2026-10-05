@@ -24,7 +24,7 @@ Then open http://localhost:8787. The demo uses in-memory storage; production mus
 
 ## Provider onboarding
 
-Set up provider apps and approved sender identities only after legal/provider review. Configure webhook URLs for `/webhooks/v1/twilio-sms` and `/webhooks/v1/meta-whatsapp`, store secrets in a vault, and validate official provider fixtures before enabling live ingress. Provider adapters are replaceable behind `src/providers.mjs`.
+Set up provider apps and approved sender identities only after legal/provider review. Configure webhook URLs for `/webhooks/v1/twilio` and `/webhooks/v1/meta`, store secrets in a vault, and validate official provider fixtures before enabling live ingress. Provider adapters are replaceable behind `src/providers.mjs`. This prototype verifies Arbis-signed reference envelopes; production adapters must implement each provider's official signature format before live traffic is enabled.
 
 ## Safety gates and limitations
 
